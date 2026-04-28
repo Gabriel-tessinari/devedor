@@ -1,0 +1,21 @@
+info:
+  name: salvar devedores
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: "{{host}}/devedores"
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Priscila"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
