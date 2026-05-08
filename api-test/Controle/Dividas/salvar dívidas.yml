@@ -1,0 +1,25 @@
+info:
+  name: salvar dívidas
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{host}}/dividas"
+  body:
+    type: json
+    data: |-
+      {
+        "descricao": "Sipolatti (Metade do valor da máquina)",
+        "valor": 1275,
+        "data": "2026-03-01",
+        "observacao": "Devolver para o Cofrinho Casa",
+        "devedorId": 3
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
