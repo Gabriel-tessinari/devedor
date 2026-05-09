@@ -12,7 +12,7 @@ public record PagamentoRequest(
   BigDecimal valor,
 
   @NotNull(message = "A data é obrigatória")
-  LocalDate dataPagamento,
+  LocalDate data,
 
   @NotNull(message = "O ID da dívida é obrigatório")
   Long dividaId
