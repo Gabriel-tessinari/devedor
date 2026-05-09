@@ -39,13 +39,6 @@ public class DividaController {
     return ResponseEntity.status(HttpStatus.CREATED).body(mapper.toResponse(salva));
   }
 
-  @PutMapping("/{id}")
-  public ResponseEntity<DividaResponse> atualizar(@PathVariable Long id, @RequestBody @Valid DividaRequest request) {
-    Divida entity = mapper.toEntity(request);
-    Divida atualizada = service.atualizar(id, entity);
-    return ResponseEntity.ok(mapper.toResponse(atualizada));
-  }
-
   @GetMapping
   public ResponseEntity<List<DividaResponse>> listarTodas() {
     List<DividaResponse> dtos = service.listarTodas().stream()
@@ -68,6 +61,13 @@ public class DividaController {
       .collect(Collectors.toList());
 
     return ResponseEntity.ok(dtos);
+  }
+
+  @PutMapping("/{id}")
+  public ResponseEntity<DividaResponse> atualizar(@PathVariable Long id, @RequestBody @Valid DividaRequest request) {
+    Divida entity = mapper.toEntity(request);
+    Divida atualizada = service.atualizar(id, entity);
+    return ResponseEntity.ok(mapper.toResponse(atualizada));
   }
 
   @DeleteMapping("/{id}")

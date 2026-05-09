@@ -34,16 +34,10 @@ public class DividaService {
     return dividaRepository.findAll();
   }
 
-  @Transactional
-  public Divida atualizar(Long id, Divida dadosAtualizados) {
-    Divida dividaExistente = buscarPorId(id);
-
-    dividaExistente.setDescricao(dadosAtualizados.getDescricao());
-    dividaExistente.setValor(dadosAtualizados.getValor());
-    dividaExistente.setData(dadosAtualizados.getData());
-    dividaExistente.setObservacao(dadosAtualizados.getObservacao());
-
-    return dividaRepository.save(dividaExistente);
+  @Transactional(readOnly = true)
+  public Divida buscarPorId(Long id) {
+    return dividaRepository.findById(id)
+      .orElseThrow(() -> new EntidadeNaoEncontradaException("Divida não encontrada com id: " + id));
   }
 
   @Transactional(readOnly = true)
@@ -54,10 +48,14 @@ public class DividaService {
     return dividaRepository.findByDevedorId(devedorId);
   }
 
-  @Transactional(readOnly = true)
-  public Divida buscarPorId(Long id) {
-    return dividaRepository.findById(id)
-      .orElseThrow(() -> new EntidadeNaoEncontradaException("Divida não encontrada com id: " + id));
+  @Transactional
+  public Divida atualizar(Long id, Divida dadosAtualizados) {
+    Divida dividaExistente = buscarPorId(id);
+    dividaExistente.setDescricao(dadosAtualizados.getDescricao());
+    dividaExistente.setValor(dadosAtualizados.getValor());
+    dividaExistente.setData(dadosAtualizados.getData());
+    dividaExistente.setObservacao(dadosAtualizados.getObservacao());
+    return dividaRepository.save(dividaExistente);
   }
 
   @Transactional
