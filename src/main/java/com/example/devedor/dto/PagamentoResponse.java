@@ -6,6 +6,6 @@ import java.time.LocalDate;
 public record PagamentoResponse(
   Long id,
   BigDecimal valor,
-  LocalDate dataPagamento,
+  LocalDate data,
   Long dividaId
 ) {}
