@@ -1,0 +1,23 @@
+info:
+  name: salvar pagamentos
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{host}}/pagamentos"
+  body:
+    type: json
+    data: |-
+      {
+        "valor": 127.50,
+        "data": "2026-05-06",
+        "dividaId": 4
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
