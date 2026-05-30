@@ -55,6 +55,7 @@ public class DividaService {
     dividaExistente.setValor(dadosAtualizados.getValor());
     dividaExistente.setData(dadosAtualizados.getData());
     dividaExistente.setObservacao(dadosAtualizados.getObservacao());
+    dividaExistente.setTipo(dadosAtualizados.getTipo());
     return dividaRepository.save(dividaExistente);
   }
 

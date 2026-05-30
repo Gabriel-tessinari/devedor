@@ -15,6 +15,7 @@ public class DividaMapper {
     entity.setValor(request.valor());
     entity.setData(request.data());
     entity.setObservacao(request.observacao());
+    entity.setTipo(request.tipo());
     return entity;
   }
 
@@ -25,6 +26,7 @@ public class DividaMapper {
       entity.getValor(),
       entity.getData(),
       entity.getObservacao(),
+      entity.getTipo(),
       entity.getPessoa().getId()
     );
   }

@@ -3,6 +3,8 @@ package com.financeiro.divida.dto;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.financeiro.divida.enums.TipoDivida;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -19,7 +21,10 @@ public record DividaRequest(
   LocalDate data,
   
   String observacao,
+
+  @NotNull(message = "O tipo é obrigatório")
+  TipoDivida tipo,
   
-  @NotNull(message = "O ID do devedor é obrigatório")
-  Long devedorId
+  @NotNull(message = "O ID da pessoa é obrigatório")
+  Long pessoaId
 ) {}
