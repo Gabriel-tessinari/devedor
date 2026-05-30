@@ -1,12 +1,10 @@
 package com.financeiro.divida.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.financeiro.divida.dto.PessoaRequest;
-import com.financeiro.divida.dto.PessoaResponse;
 import com.financeiro.divida.entity.Pessoa;
 import com.financeiro.divida.exception.EntidadeNaoEncontradaException;
 import com.financeiro.divida.exception.NegocioException;
@@ -20,43 +18,36 @@ public class PessoaService {
 
   private final PessoaRepository repository;
 
-  public List<PessoaResponse> listar() {
-    return repository.findAll().stream()
-      .map(d -> new PessoaResponse(d.getId(), d.getNome()))
-      .toList();
-  }
-
-  public Optional<PessoaResponse> buscarPorId(Long id) {
-    return repository.findById(id)
-      .map(d -> new PessoaResponse(d.getId(), d.getNome()));
-  }
-
-  public PessoaResponse salvar(PessoaRequest request) {
-    if (repository.existsByNome(request.getNome())) {
-      throw new NegocioException("Já existe um devedor com o nome: " + request.getNome());
+  @Transactional
+  public Pessoa salvar(Pessoa pessoa) {
+    if (repository.existsByNome(pessoa.getNome())) {
+      throw new NegocioException("Já existe uma pessoa com o nome: " + pessoa.getNome());
     }
-
-    Pessoa devedor = new Pessoa();
-    devedor.setNome(request.getNome());
-    
-    devedor = repository.save(devedor);
-    return new PessoaResponse(devedor.getId(), devedor.getNome());
+    return repository.save(pessoa);
   }
 
-  public PessoaResponse atualizar(Long id, PessoaRequest request) {
-    Pessoa devedor = repository.findById(id)
-      .map(d -> {
-        d.setNome(request.getNome());
-        return repository.save(d);
-      })
-      .orElseThrow(() -> new EntidadeNaoEncontradaException("Devedor não encontrado com id: " + id));
-
-    return new PessoaResponse(devedor.getId(), devedor.getNome());
+  @Transactional(readOnly = true)
+  public List<Pessoa> listarTodas() {
+    return repository.findAll();
   }
 
+  @Transactional(readOnly = true)
+  public Pessoa buscarPorId(Long id) {
+    return repository.findById(id)
+      .orElseThrow(() -> new EntidadeNaoEncontradaException("Pessoa não encontrada com id: " + id));
+  }
+
+  @Transactional
+  public Pessoa atualizar(Long id, Pessoa dadosAtualizados) {
+    Pessoa pessoaExistente = buscarPorId(id);
+    pessoaExistente.setNome(dadosAtualizados.getNome());
+    return repository.save(pessoaExistente);
+  }
+
+  @Transactional
   public void deletar(Long id) {
     if (!repository.existsById(id)) {
-      throw new EntidadeNaoEncontradaException("Não é possível deletar: Devedor não encontrado.");
+      throw new EntidadeNaoEncontradaException("Pessoa não encontrada com id: " + id);
     }
     repository.deleteById(id);
   }

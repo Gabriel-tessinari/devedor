@@ -1,11 +1,8 @@
 package com.financeiro.divida.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
 
-@Getter
-@Setter
-public class PessoaRequest {
-  
-  private String nome;
-}
+public record PessoaRequest(
+  @NotBlank(message = "O nome é obrigatório")
+  String nome
+) {}
