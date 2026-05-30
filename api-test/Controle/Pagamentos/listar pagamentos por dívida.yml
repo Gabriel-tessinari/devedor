@@ -1,0 +1,15 @@
+info:
+  name: listar pagamentos por dívida
+  type: http
+  seq: 4
+
+http:
+  method: GET
+  url: "{{host}}/pagamentos/divida/1"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -8,10 +8,10 @@
 		<version>4.0.5</version>
 		<relativePath/>
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>devedor</artifactId>
+	<groupId>com.financeiro</groupId>
+	<artifactId>dividas-api</artifactId>
+  <name>dividas-api</name>
 	<version>0.2.0</version>
-	<name/>
 	<description/>
 	<url/>
 	<licenses>

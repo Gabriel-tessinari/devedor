@@ -1,16 +1,18 @@
 info:
-  name: salvar devedores
+  name: salvar pagamentos
   type: http
   seq: 1
 
 http:
   method: POST
-  url: "{{host}}/devedores"
+  url: "{{host}}/pagamentos"
   body:
     type: json
     data: |-
       {
-        "nome": "Tania"
+        "valor": 127.50,
+        "data": "2026-05-06",
+        "dividaId": 4
       }
   auth: inherit
 
