@@ -8,5 +8,6 @@
     <include file="db/changelog/001-criar-tabela-devedores.sql"/>
     <include file="db/changelog/002-criar-tabela-dividas.sql"/>
     <include file="db/changelog/003-criar-tabela-pagamentos.sql"/>
+    <include file="db/changelog/004-renomear-tabela-devedores-para-pessoas.sql"/>
 
 </databaseChangeLog>
