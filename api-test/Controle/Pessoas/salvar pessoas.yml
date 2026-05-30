@@ -1,0 +1,21 @@
+info:
+  name: salvar pessoas
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{host}}/pessoas"
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "Tania"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,7 @@
+info:
+  name: Pessoas
+  type: folder
+  seq: 2
+
+request:
+  auth: inherit
