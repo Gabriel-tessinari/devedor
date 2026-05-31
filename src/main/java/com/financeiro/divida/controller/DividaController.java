@@ -35,7 +35,7 @@ public class DividaController {
   @PostMapping
   public ResponseEntity<DividaResponse> criar(@RequestBody @Valid DividaRequest request) {
     Divida entity = mapper.toEntity(request);
-    Divida salva = service.salvar(entity, request.devedorId());
+    Divida salva = service.salvar(entity, request.pessoaId());
     return ResponseEntity.status(HttpStatus.CREATED).body(mapper.toResponse(salva));
   }
 

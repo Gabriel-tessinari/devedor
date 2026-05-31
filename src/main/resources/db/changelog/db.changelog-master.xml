@@ -9,5 +9,6 @@
     <include file="db/changelog/002-criar-tabela-dividas.sql"/>
     <include file="db/changelog/003-criar-tabela-pagamentos.sql"/>
     <include file="db/changelog/004-renomear-tabela-devedores-para-pessoas.sql"/>
+    <include file="db/changelog/005-adicionar-coluna-tipo-tabela-dividas.sql"/>
 
 </databaseChangeLog>
