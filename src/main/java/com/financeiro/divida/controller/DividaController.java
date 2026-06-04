@@ -54,9 +54,9 @@ public class DividaController {
     return ResponseEntity.ok(mapper.toResponse(divida));
   }
 
-  @GetMapping("/devedor/{devedorId}")
-  public ResponseEntity<List<DividaResponse>> listarPorDevedor(@PathVariable Long devedorId) {
-    List<DividaResponse> dtos = service.listarPorDevedor(devedorId).stream()
+  @GetMapping("/pessoa/{pessoaId}")
+  public ResponseEntity<List<DividaResponse>> listarPorPessoa(@PathVariable Long pessoaId) {
+    List<DividaResponse> dtos = service.listarPorPessoa(pessoaId).stream()
       .map(mapper::toResponse)
       .collect(Collectors.toList());
 

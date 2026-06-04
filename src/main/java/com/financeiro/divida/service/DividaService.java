@@ -41,7 +41,7 @@ public class DividaService {
   }
 
   @Transactional(readOnly = true)
-  public List<Divida> listarPorDevedor(Long pessoaId) {
+  public List<Divida> listarPorPessoa(Long pessoaId) {
     if (!devedorRepository.existsById(pessoaId)) {
       throw new EntidadeNaoEncontradaException("Pessoa não encontrada com id: " + pessoaId);
     }
