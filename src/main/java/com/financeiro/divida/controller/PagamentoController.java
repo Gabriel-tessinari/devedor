@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,7 +41,15 @@ public class PagamentoController {
   }
 
   @GetMapping
-  public ResponseEntity<List<PagamentoResponse>> listarTodos() {
+  public ResponseEntity<List<PagamentoResponse>> listarTodosOuPorDividas(@RequestParam(required = false) List<Long> dividaIds) {
+    if (dividaIds != null && !dividaIds.isEmpty()) {
+      List<PagamentoResponse> pagamentos = service.listarPorDividas(dividaIds).stream()
+      .map(mapper::toResponse)
+      .collect(Collectors.toList());
+
+      return ResponseEntity.ok(pagamentos);
+    }
+
     List<PagamentoResponse> dtos = service.listarTodos().stream()
       .map(mapper::toResponse)
       .collect(Collectors.toList());

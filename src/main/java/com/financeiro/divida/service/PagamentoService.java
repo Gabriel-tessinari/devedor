@@ -43,9 +43,14 @@ public class PagamentoService {
   @Transactional(readOnly = true)
   public List<Pagamento> listarPorDivida(Long dividaId) {
     if (!dividaRepository.existsById(dividaId)) {
-        throw new EntidadeNaoEncontradaException("Dívida não encontrada com id: " + dividaId);
+      throw new EntidadeNaoEncontradaException("Dívida não encontrada com id: " + dividaId);
     }
     return pagamentoRepository.findByDividaId(dividaId);
+  }
+
+  @Transactional(readOnly = true)
+  public List<Pagamento> listarPorDividas(List<Long> dividaIds) {
+    return pagamentoRepository.findByDividaIdIn(dividaIds);
   }
 
   @Transactional
@@ -59,7 +64,7 @@ public class PagamentoService {
   @Transactional
   public void deletar(Long id) {
     if (!pagamentoRepository.existsById(id)) {
-        throw new EntidadeNaoEncontradaException("Pagamento não encontrado com id: " + id);
+      throw new EntidadeNaoEncontradaException("Pagamento não encontrado com id: " + id);
     }
     pagamentoRepository.deleteById(id);
   }
