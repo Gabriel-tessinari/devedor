@@ -31,7 +31,7 @@ public class PagamentoService {
 
   @Transactional(readOnly = true)
   public List<Pagamento> listarTodos() {
-    return pagamentoRepository.findAll();
+    return pagamentoRepository.findAllByOrderByDataAsc();
   }
 
   @Transactional(readOnly = true)
@@ -45,12 +45,12 @@ public class PagamentoService {
     if (!dividaRepository.existsById(dividaId)) {
       throw new EntidadeNaoEncontradaException("Dívida não encontrada com id: " + dividaId);
     }
-    return pagamentoRepository.findByDividaId(dividaId);
+    return pagamentoRepository.findByDividaIdOrderByDataAsc(dividaId);
   }
 
   @Transactional(readOnly = true)
   public List<Pagamento> listarPorDividas(List<Long> dividaIds) {
-    return pagamentoRepository.findByDividaIdIn(dividaIds);
+    return pagamentoRepository.findByDividaIdInOrderByDataAsc(dividaIds);
   }
 
   @Transactional

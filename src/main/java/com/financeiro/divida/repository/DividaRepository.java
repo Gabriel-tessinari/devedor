@@ -10,5 +10,6 @@ import com.financeiro.divida.entity.Divida;
 @Repository
 public interface DividaRepository extends JpaRepository<Divida, Long> {
 
-    List<Divida> findByPessoaId(Long pessoaId);
+  List<Divida> findAllByOrderByDataAsc();
+  List<Divida> findByPessoaIdOrderByDataAsc(Long pessoaId);
 }
