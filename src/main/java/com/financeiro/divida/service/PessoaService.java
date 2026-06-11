@@ -28,7 +28,7 @@ public class PessoaService {
 
   @Transactional(readOnly = true)
   public List<Pessoa> listarTodas() {
-    return repository.findAll();
+    return repository.findAllByOrderByNomeAsc();
   }
 
   @Transactional(readOnly = true)

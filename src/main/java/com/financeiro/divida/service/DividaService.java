@@ -31,7 +31,7 @@ public class DividaService {
 
   @Transactional(readOnly = true)
   public List<Divida> listarTodas() {
-    return dividaRepository.findAll();
+    return dividaRepository.findAllByOrderByDataAsc();
   }
 
   @Transactional(readOnly = true)
@@ -45,7 +45,7 @@ public class DividaService {
     if (!devedorRepository.existsById(pessoaId)) {
       throw new EntidadeNaoEncontradaException("Pessoa não encontrada com id: " + pessoaId);
     }
-    return dividaRepository.findByPessoaId(pessoaId);
+    return dividaRepository.findByPessoaIdOrderByDataAsc(pessoaId);
   }
 
   @Transactional

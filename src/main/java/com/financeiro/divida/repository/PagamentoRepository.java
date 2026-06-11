@@ -10,6 +10,7 @@ import com.financeiro.divida.entity.Pagamento;
 @Repository
 public interface PagamentoRepository extends JpaRepository<Pagamento, Long> {
 
-    List<Pagamento> findByDividaId(Long dividaId);
-    List<Pagamento> findByDividaIdIn(List<Long> dividaIds);
+  List<Pagamento> findAllByOrderByDataAsc();
+  List<Pagamento> findByDividaIdOrderByDataAsc(Long dividaId);
+  List<Pagamento> findByDividaIdInOrderByDataAsc(List<Long> dividaIds);
 }
